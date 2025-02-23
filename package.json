@@ -1,0 +1,81 @@
+{
+  "name": "mvc-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:server": "ts-node-dev src/server.ts",
+    "dev:css": "tailwindcss -i src/assets/css/input.css -o src/assets/css/output.css --watch",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:css\"",
+    "build:ts": "tsc",
+    "build:css": "tailwindcss -i src/assets/css/input.css -o dist/assets/css/output.css",
+    "build:views": "cpx \"src/views/**/*\" dist/views",
+    "build:assets": "cpx \"src/assets/**/*\" dist/assets",
+    "build:clean": "rimraf dist/assets/css/input.css",
+    "build": "npm run build:ts && npm run build:css && npm run build:views && npm run build:assets && npm run build:clean",
+    "start": "node dist/server.js",
+    "lint": "ts-standard",
+    "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@nestjs/mapped-types": "2.1.0",
+    "awilix": "12.0.4",
+    "awilix-express": "9.0.2",
+    "bcrypt": "5.1.1",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.1",
+    "connect-redis": "8.0.1",
+    "dotenv": "16.4.7",
+    "ejs": "3.1.10",
+    "express": "4.21.2",
+    "express-list-endpoints": "7.1.1",
+    "express-session": "1.18.1",
+    "module-alias": "2.2.3",
+    "passport": "0.7.0",
+    "passport-local": "1.0.0",
+    "pg": "8.13.3",
+    "redis": "4.7.0",
+    "reflect-metadata": "0.2.2",
+    "tsconfig-paths": "4.2.0",
+    "typeorm": "0.3.20",
+    "winston": "3.17.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "5.0.2",
+    "@types/express": "5.0.0",
+    "@types/express-session": "1.18.1",
+    "@types/node": "22.13.5",
+    "concurrently": "9.1.2",
+    "cpx": "1.5.0",
+    "rimraf": "6.0.1",
+    "tailwindcss": "^3.4.17",
+    "ts-node-dev": "2.0.0",
+    "ts-standard": "12.0.2",
+    "typescript": "5.7.3"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ],
+    "rules": {
+      "@typescript-eslint/indent": "off",
+      "@typescript-eslint/semi": "off",
+      "@typescript-eslint/keyword-spacing": "off",
+      "@typescript-eslint/member-delimiter-style": "off",
+      "@typescript-eslint/space-before-function-paren": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/explicit-function-return-type": "off"
+    }
+  },
+  "_moduleAliases": {
+    "@": "dist"
+  }
+}

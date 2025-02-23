@@ -1,0 +1,29 @@
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeIcon = document.getElementById('theme-icon');
+    if (!themeIcon) return;
+
+    document.body.classList.add('transition-colors', 'duration-200');
+
+    const iconImage = document.createElement('img');
+    iconImage.classList.add('w-7', 'h-7', 'transition-transform', 'hover:scale-105', 'cursor-pointer');
+    themeIcon.appendChild(iconImage);
+
+    const updateIcon = () => {
+      const isDarkMode = (localStorage.getItem('theme') ?? 'light') === 'dark';
+      document.documentElement.classList.toggle('dark', isDarkMode);
+      document.documentElement.classList.toggle('light', !isDarkMode);
+      iconImage.src = `/img/${isDarkMode ? 'sun' : 'moon-stars'}.svg`;
+      iconImage.alt = isDarkMode ? 'Sun' : 'Moon';
+    };
+
+    const toggleDarkMode = () => {
+      const isDarkMode = (localStorage.getItem('theme') ?? 'light') === 'dark';
+      localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+      updateIcon();
+    };
+
+    themeIcon.addEventListener('click', toggleDarkMode);
+    updateIcon();
+  });
+</script>
