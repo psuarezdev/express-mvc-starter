@@ -1,1 +1,1 @@
-# express-mvc-starter
+# Express MVC Starter
